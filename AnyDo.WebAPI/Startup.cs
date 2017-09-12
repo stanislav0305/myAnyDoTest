@@ -21,10 +21,9 @@ namespace AnyDo.WebAPI
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env) //(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            //Configuration = configuration;
-
+            
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
@@ -54,12 +53,7 @@ namespace AnyDo.WebAPI
             services.AddCors();
             services.AddAutoMapper(typeof(Startup));
 
-            //var config = new AutoMapper.MapperConfiguration(cfg =>
-            //{
-            //    cfg.CreateMap<UserViewModel, User>();
-            //});
-
-            //var mapper = config.CreateMapper();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,17 +74,7 @@ namespace AnyDo.WebAPI
 
             app.UseStatusCodePages("text/plain", "Status code page, status code: {0}");
             app.UseMvc();
-            //app.UseMvc(routes =>
-            //{
-
-            //    routes.MapRoute("errors", "Errors/Error/{errorCode}",
-            //        defaults: new { controller = "Errors", action = "Error" });
-
-            //    //routes.MapRoute("default", "Errors/Error/{errorCode}",
-            //    //    defaults: new { controller = "Home", action = "Errors" });
-            //    // Add other routes / defualt route below);
-
-            //});
+            app.UseStaticFiles();
         }
     }
 }
