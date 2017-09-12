@@ -1,0 +1,18 @@
+﻿<div id="task-category-create-modal" class="uk-modal">
+    <div class="uk-modal-dialog">
+        <a class="uk-modal-close uk-close"></a>
+        <div class="uk-modal-header">
+            <h2>Create Task Category</h2>
+        </div>
+       
+        <form ng-submit="createTaskCategory()">
+            <input type="text" name="title" required ng-model="taskCategoryForCreate.title">
+
+            <div class="uk-modal-footer uk-text-right">
+                <button type="button" class="uk-button uk-modal-close">Cancel</button>
+                <button type="submit" class="uk-button uk-button-primary" ngClick="Submit">Create</button>
+            </div>
+        </form>
+
+    </div>
+</div>

@@ -1,0 +1,15 @@
+﻿<div id="task-category-delete-modal" class="uk-modal">
+    <div class="uk-modal-dialog">
+        <a class="uk-modal-close uk-close"></a>
+        <div class="uk-modal-header">
+            <h2>Delete Task Category</h2>
+        </div>
+        <div>
+            <p>Are you sure you want to delete task category by name '{{taskCategoryForDelete.title}}' ?</p>
+        </div>
+        <div class="uk-modal-footer uk-text-right">
+            <button type="button" class="uk-button uk-modal-close">Cancel</button>
+            <button type="button" class="uk-button uk-button-primary" ng-click="deleteTaskCategory(taskCategoryForDelete.id)">Delete</button>
+        </div>
+    </div>
+</div>

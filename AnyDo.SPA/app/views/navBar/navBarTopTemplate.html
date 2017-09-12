@@ -1,0 +1,24 @@
+﻿<nav class="nav-bar-top uk-navbar">
+    <h4 class="uk-float-left uk-margin-large-left uk-navbar-content">{{today | navBarTopDateFormat }}</h4>
+
+    <ul class="uk-navbar-nav uk-float-right">
+
+        <li class="uk-parent" data-uk-dropdown="{mode:'click'}" aria-haspopup="true" aria-expanded="false">
+            <a href="" title="Options" data-uk-tooltip="{{ukTooltipOptions}}" class="uk-navbar-content">
+                <i class="uk-icon-ellipsis-h uk-icon-small"></i>
+            </a>
+
+            <div class="uk-dropdown uk-dropdown-navbar uk-dropdown-bottom" aria-hidden="true" tabindex="">
+                <span class=""><i class="uk-icon-refresh uk-icon-small uk-text-primary"></i> Sync now</span>
+            </div>
+        </li>
+
+        <li>
+            <a href="#" title="Notification Center" data-uk-tooltip="{{ukTooltipOptions}}" class="uk-navbar-content"
+               data-uk-offcanvas="{target:'#right-sidebar', mode:'slide'}">
+                <i class="uk-icon-comment-o uk-icon-small"></i>
+            </a>
+        </li>
+    </ul>
+
+</nav>

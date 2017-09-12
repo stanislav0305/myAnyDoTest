@@ -1,2 +1,0 @@
-# myAnyDoTest
-myAnyDoTest 123

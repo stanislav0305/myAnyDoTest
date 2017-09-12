@@ -1,0 +1,25 @@
+﻿<div class="uk-panel uk-panel-box">
+    <h2>Invintation Form</h2>
+
+    <form ng-submit="sendInvintation()">
+        <div>
+            <div>
+                <label>Mail to:</label>
+                <input type="email" name="title" placeholder="Add email" class="form-control"
+                       required ng-model="invintationMail.mailTo">
+                <div ng-messages="invintationMail.mailTo.$error">
+                    <div ng-message="required">This field is required</div>
+                    <div ng-message="email">Your email address is invalid</div>
+                </div>
+            </div>
+
+            <div>
+                <label>Massage:</label>
+                <textarea placeholder="Add massage" ng-model="invintationMail.message"></textarea>
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="uk-button uk-button-primary" ngClick="Submit">Send invitations</button>
+        </div>
+    </form>
+</div>

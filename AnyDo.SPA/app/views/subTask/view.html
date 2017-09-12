@@ -1,0 +1,32 @@
+﻿<button type="button" class="uk-button uk-button-primary" 
+        ng-click="showingManager.showCreateSubTaskForm()">
+    + Add sub-task</button>
+
+<div>
+    <label>Search:</label>
+    <input type="text" ng-model="subTaskSearch.title">
+</div>
+
+<table>
+    <tr>
+        <td>Title</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr ng-repeat="subTask in subTasks.items
+                | filter: {'title' : subTaskSearch.title}">
+        <td>{{subTask.title}}</td>
+        <td>
+            <button type="button" class="uk-button uk-button-primary" 
+                    ng-click="subTaskEditClick(subTask)">
+                Edit
+            </button>
+        </td>
+        <td>
+            <button type="button" class="uk-button uk-button-primary"
+                    ng-click="subTaskDeleteClick(subTask)">
+                    Delete
+            </button>
+        </td>
+    </tr>
+</table>

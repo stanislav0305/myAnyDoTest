@@ -1,0 +1,33 @@
+﻿<button type="button" class="uk-button uk-button-primary" ng-click="attachmentCreateClick()">Add attachment</button>
+
+<div>
+    <label>Search:</label>
+    <input type="text" ng-model="attachmentSearch.fileNameFull">
+</div>
+
+<table>
+    <tr>
+        <td>File name</td>
+        <td>File size</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr ng-repeat="attachment in attachments.items
+                | filter: {'fileNameFull' : attachmentSearch.fileNameFull}">
+        <td>{{attachment.fileNameFull}}</td>
+        <td>{{attachment.fileSizeInBites}} bits</td>
+        <td>
+            <a href="{{apiBaseURL}}attachments/{{attachment.id}}" target="_self" 
+               class="uk-button uk-button-primary">
+                Download
+            </a>
+        </td>
+        <td>
+            <button type="button" class="uk-button uk-button-primary"
+                    ng-click="attachmentDeleteClick(attachment)">
+                Delete
+            </button>
+        </td>
+    </tr>
+</table>
+

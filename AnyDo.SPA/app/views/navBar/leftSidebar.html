@@ -1,0 +1,54 @@
+﻿<div id="left-sidebar" class="sidebar uk-offcanvas">
+    <div class="uk-offcanvas-bar">
+        <div class="uk-panel">
+            <h2 class="text-helvetica-neue-thin text-primary-color">Settings</h2>
+        </div>
+
+        <div id="settings-accordion" class="uk-accordion" data-uk-accordion>
+
+            <h3 class="uk-accordion-title">Pereferences</h3>
+            <div class="uk-accordion-content">
+                <div class="uk-panel-box">
+                    <form ng-submit="savePreferences()">
+                        <div>
+                            <span>Time Format</span>
+                            <select required ng-model="preferences.preference.timeFormat"
+                                    ng-options="tf.format as tf.name for tf in preferences.timeFormats">
+                            </select>
+                        </div>
+
+                        <div>
+                            <span>Date Format</span>
+                            <select required ng-model="preferences.preference.dateFormat"
+                                    ng-options="df.format as df.name for df in preferences.dateFormats">
+                            </select>
+                        </div>
+
+                        <div>
+                            <span>Week Start Day</span>
+                            <select required ng-model="preferences.preference.weekStartDay" 
+                                    ng-options="wd.value as wd.name for wd in preferences.weekStartDays">
+                            </select>
+                        </div>
+
+                        <div class="uk-modal-footer uk-text-right">
+                            <button type="submit" class="uk-button uk-button-primary" ngClick="Submit">Save</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+
+
+            <h3 class="uk-accordion-title">Others</h3>
+            <div class="uk-accordion-content">
+                <div class="uk-panel-box">
+                    ...
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

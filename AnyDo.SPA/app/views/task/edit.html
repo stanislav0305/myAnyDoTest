@@ -1,0 +1,59 @@
+﻿<div class="uk-panel uk-panel-box">
+    <h2>Edit Task</h2>
+
+    <form ng-submit="editTask()">
+        <div>
+            <input type="text" name="title" required ng-model="taskForEdit.title">
+            <div>
+                <label>Priority</label>
+                <input type="checkbox" name="priority" ng-model="taskForEdit.priority">
+            </div>
+            <div>
+                <label>Make up to (format: {{preferences.preference.dateFormat}})</label>
+                <input type="date" required name="make-up-to" ng-model="taskForEdit.makeUpTo">
+                <span>formated date:{{ taskForEdit.makeUpTo | dateToPrefString:preferences.preference.dateFormat}}</span>
+            </div>
+            <!--<div>
+                <input id="task-make-to-date" type="text" data-uk-datepicker="{{taskForCreateDateOptions}}">
+            </div>
+            <div class="uk-form-icon" data-uk-timepicker="{{taskForCreateTimeOptions}}">
+                <i class="uk-icon-clock-o"></i>
+                <input id="task-make-to-time" type="text">
+            </div>-->
+
+        </div>
+        <div>
+            <button type="button" class="uk-button" ng-click="showingManager.showEditTaskCaregoryForm()"> << Go To Edit Task Caregory</button>
+            <button type="submit" class="uk-button uk-button-primary" ngClick="Submit">Save</button>
+        </div>
+    </form>
+</div>
+<div class="uk-panel uk-panel-box">
+    <ul id="task-detail-tabs" class="uk-tab" data-uk-tab>
+        <li><a href="">Notes</a></li>
+        <li><a href="">Sub-tasks <span class="uk-badge">{{taskForEdit.subTaskCount}}</span></a></li>
+        <li><a href="">Attachments <span class="uk-badge">{{taskForEdit.attachmentCount}}</span></a></li>
+        <li><a href="">Share & Assign</a></li>
+    </ul>
+    <ul id="task-detail-tab-contents" class="uk-switcher uk-margin">
+        <li>
+            <h4>Notes</h4>
+            <div>
+            <textarea placeholder="Add notes" ng-model="taskForEdit.notes"></textarea>
+            </div>
+            <button type="button" class="uk-button uk-button-primary" ng-click="editTask()">Save notes</button>
+        </li>
+        <li>
+            <h4>Sub-tasks</h4>
+            <sub-task-view></sub-task-view>
+        </li>
+        <li>
+            <h4>Attachments</h4>
+            <attachment-view></attachment-view>
+        </li>
+        <li>
+            <h4>Share & Assign</h4>
+            <invintation-send></invintation-send>
+        </li>
+    </ul>
+</div>

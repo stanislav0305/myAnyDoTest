@@ -1,0 +1,13 @@
+﻿<div class="uk-panel uk-panel-box">
+    <h2>Delete Subtask</h2>
+    <div>
+        <p>Are you sure you want to delete subtask by name '{{subTaskForDelete.title}}' ?</p>
+    </div>
+    <div class="uk-text-right">
+        <button type="button" class="uk-button" ng-click="showingManager.showEditTaskForm()"> << Go to Task Edit</button>
+        <button type="button" class="uk-button uk-button-primary"
+                ng-click="deleteSubTask(subTaskForDelete.id)">
+            Delete
+        </button>
+    </div>
+</div>

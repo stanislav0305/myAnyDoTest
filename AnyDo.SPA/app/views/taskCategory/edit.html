@@ -1,0 +1,43 @@
+﻿<div id="task-category-edit-modal" class="uk-modal">
+    <div class="uk-modal-dialog">
+        <a class="uk-modal-close uk-close"></a>
+
+        <div ng-show="showingManager.editTaskCategory.formVisible" >
+            <div class="uk-modal-header">
+                <h2>Edit Task Category</h2>
+            </div>
+
+            <div class="uk-overflow-container">
+
+                <form ng-submit="editTaskCategory()">
+                    <input type="text" name="title" required ng-model="taskCategoryForEdit.title">
+                    <button type="submit" class="uk-button uk-button-primary" ngClick="Submit">Save</button>
+                </form>
+
+                <task-view><task-view>
+
+            </div>
+        </div>
+
+
+
+        <task-create ng-show="showingManager.createTaskForm.formVisible"></task-create>
+
+        <task-edit ng-show="showingManager.editTaskForm.formVisible"></task-edit>
+
+
+
+        <sub-task-create ng-show="showingManager.createSubTaskForm.formVisible"></sub-task-create>
+
+        <sub-task-edit ng-show="showingManager.editSubTaskForm.formVisible"></sub-task-edit>
+
+        <sub-task-delete ng-show="showingManager.deleteSubTaskForm.formVisible"></sub-task-delete>
+
+
+
+        <attachment-create ng-show="showingManager.attachmentCreateForm.formVisible"></attachment-create>
+
+        <attachment-delete ng-show="showingManager.attachmentDeleteForm.formVisible"></attachment-delete>
+
+    </div>
+</div>

@@ -1,0 +1,31 @@
+﻿<div class="uk-panel uk-panel-box">
+    <h2>Create Task</h2>
+
+    <form ng-submit="createTask()">
+        <div>
+            <input type="text" name="title" required ng-model="taskForCreate.title">
+            <div>
+                <label>Priority</label>
+                <input type="checkbox" name="priority" ng-model="taskForCreate.priority">
+            </div>
+            <div>
+                <label>Make up to (format: {{preferences.preference.dateFormat}})</label>
+                <input type="date" required name="make-up-to" ng-model="taskForCreate.makeUpTo">
+                <span>formated date:{{ taskForCreate.makeUpTo | dateToPrefString:preferences.preference.dateFormat}}</span>
+            </div>
+            <!--
+            <div>
+                <input id="task-make-to-date" type="text" data-uk-datepicker="{{taskForCreateDateOptions}}">
+            </div>
+            <div class="uk-form-icon" data-uk-timepicker="{{taskForCreateTimeOptions}}">
+                <i class="uk-icon-clock-o"></i>
+                <input id="task-make-to-time" type="text">
+            </div>-->
+
+        </div>
+        <div>
+            <button type="button" class="uk-button" ng-click="showingManager.showEditTaskCaregoryForm()">Cancel</button>
+            <button type="submit" class="uk-button uk-button-primary" ngClick="Submit">Create</button>
+        </div>
+    </form>
+</div>

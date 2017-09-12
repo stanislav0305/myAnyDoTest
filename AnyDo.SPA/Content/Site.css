@@ -1,0 +1,135 @@
+﻿html, body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+
+.uk-link, a {
+    color: #a7a8a9;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.nav-bar-top {
+    margin-left: 56px;
+    height: 55px;
+}
+
+.nav-bar-left {
+    position: absolute;
+    width: 56px;
+    height: 100%;
+    left: 0;
+    top: 0;
+    z-index: 990;
+    border-width: 0 !important;
+}
+
+    .nav-bar-left .item-bottom {
+        position: absolute;
+        bottom: 0;
+    }
+
+.nav-bar-left-item {
+    height: 56px !important;
+    width: 56px !important;
+}
+
+.sidebar h2 {
+    font-size: 48px !important;
+}
+
+
+
+.page-content {
+    padding-left: 56px;
+}
+
+.vertical-align-middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.uk-text-uppercase {
+    text-transform: uppercase;
+}
+
+.uk-text-lowercase {
+    text-transform: lowercase;
+}
+
+.uk-text-capitalize {
+    text-transform: capitalize;
+}
+
+
+@font-face {
+    font-family: 'FontAwesome';
+    src: url("../fonts/fontawesome-webfont.woff2") format('woff2'), url("../fonts/fontawesome-webfont.woff") format("woff"), url("../fonts/fontawesome-webfont.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNeue-Thin';
+    src: url('../fonts/HelveticaNeue-Thin.otf') format('opentype'), url('../fonts/HelveticaNeue-ThinCond.otf') format('opentype'), url('../fonts/HelveticaNeue-ThinCondObl.otf') format('opentype'), url('../fonts/HelveticaNeue-ThinExt.otf') format('opentype'), url('../fonts/HelveticaNeue-ThinExtObl.otf') format('opentype'), url('../fonts/HelveticaNeue-ThinItalic.otf') format('opentype');
+}
+
+.uk-offcanvas-bar {
+    background-color: #fff !important;
+}
+
+.text-primary-color {
+    color: #09c !important;
+}
+
+.text-helvetica-neue-thin {
+    letter-spacing: 1px;
+    font-family: 'HelveticaNeue-Thin',Helvetica,Arial,sans-serif;
+}
+
+/*.uk-text-primary {
+    letter-spacing: 1px;
+    font-family: 'HelveticaNeue-Thin',Helvetica,Arial,sans-serif;
+    color: #09c !important;
+}*/
+
+/*body, input, textarea, select, option, p, span, a, div {
+    font-family: 'HelveticaNeue-Thin', Arial,sans-serif;
+}*/
+
+.uk-offcanvas .uk-panel {
+    text-shadow: none;
+}
+
+.big-title {
+    font-size: 56px;
+    font-family: 'DINAlternate-Bold',Arial,sans-serif;
+    text-transform: uppercase;
+}
+
+.button-plus {
+    color: #09c !important;
+    padding: 10px 20px 0 0;
+    font-size: 56px;
+    font-family: 'HelveticaNeue-Thin',Helvetica,Arial,sans-serif;
+}
+
+    a.button-plus:hover {
+        text-decoration: none !important;
+    }
+
+.user-profile {
+    background: url(/Content/img/default_profile_icon.svg) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
