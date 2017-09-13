@@ -28,10 +28,26 @@ namespace AnyDo.Data.Repositories
             this.Update(task);
         }
 
-        public void DecrimentTaskCountCategoryById(int taskId)
+        public void DecrimentSubTasCountkById(int taskId)
         {
             var task = this.GetById(taskId);
             task.SubTaskCount--;
+
+            this.Update(task);
+        }
+
+        public void IncrimentAttachmentCountById(int taskId)
+        {
+            var task = this.GetById(taskId);
+            task.AttachmentCount++;
+
+            this.Update(task);
+        }
+
+        public void DecrimentAttachmentCountById(int taskId)
+        {
+            var task = this.GetById(taskId);
+            task.AttachmentCount--;
 
             this.Update(task);
         }
@@ -42,6 +58,9 @@ namespace AnyDo.Data.Repositories
         IQueryable<Task> GetByCategory(int categoryId);
 
         void IncrimentSubTaskCountById(int taskId);
-        void DecrimentTaskCountCategoryById(int taskId);
+        void DecrimentSubTasCountkById(int taskId);
+
+        void IncrimentAttachmentCountById(int taskId);
+        void DecrimentAttachmentCountById(int taskId);
     }
 }

@@ -83,7 +83,7 @@ namespace AnyDo.WebAPI.Controllers
         {
             var subTask = subTaskRepository.GetById(id);
 
-            taskRepository.DecrimentTaskCountCategoryById(subTask.TaskId);
+            taskRepository.DecrimentSubTasCountkById(subTask.TaskId);
 
             subTaskRepository.Delete(subTask);
         }

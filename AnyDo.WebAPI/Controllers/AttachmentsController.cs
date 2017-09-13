@@ -20,12 +20,15 @@ namespace AnyDo.WebAPI.Controllers
     public class AttachmentsController : Controller
     {
         IAttachmentRepository attachmentRepository;
+        ITaskRepository taskRepository;
         IHostingEnvironment appEnvironment;
 
         public AttachmentsController(IAttachmentRepository attachmentRepository,
+            ITaskRepository taskRepository,
             IHostingEnvironment appEnvironment)
         {
             this.attachmentRepository = attachmentRepository;
+            this.taskRepository = taskRepository;
             this.appEnvironment = appEnvironment;
         }
 
@@ -67,13 +70,18 @@ namespace AnyDo.WebAPI.Controllers
                 };
                 attachmentRepository.Add(attachment);
 
+                taskRepository.IncrimentAttachmentCountById(taskId);
+
                 string fileFullPath = GetFilePathFull(attachment.Id, file.FileName);
                 using (var fileStream = new FileStream(fileFullPath, FileMode.Create))
                 {
                     await file.CopyToAsync(fileStream);
                 }
 
-                return Ok(attachment);
+                attachment = attachmentRepository.GetById(attachment.Id);
+                var apiAttachment = Mapper.Map<Attachment, AttachmentApiModel>(attachment);
+
+                return Ok(apiAttachment);
             }
 
             return BadRequest();
@@ -83,6 +91,8 @@ namespace AnyDo.WebAPI.Controllers
         public void Delete(int id)
         {
             var attachment = attachmentRepository.GetById(id);
+
+            taskRepository.DecrimentAttachmentCountById(attachment.TaskId);
 
             string fileFullPath = GetFilePathFull(id, attachment.FileNameFull);
             if (System.IO.File.Exists(fileFullPath))
