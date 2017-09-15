@@ -14,7 +14,7 @@
                 makeUpTo = new Date(tasks[i].makeUpTo);
                 makeUpTo = new Date(makeUpTo.getFullYear(), makeUpTo.getMonth(), makeUpTo.getDate(), 0, 0, 0);
 
-                if (fromDate < makeUpTo && makeUpTo < toDate) {
+                if (fromDate <= makeUpTo && makeUpTo <= toDate) {
                     result.push(tasks[i]);
                 }
             }

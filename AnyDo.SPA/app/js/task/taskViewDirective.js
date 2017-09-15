@@ -26,6 +26,7 @@
                         for (var i = 0; i < this.items.length; i++) {
                             if (this.items[i].id === item.id) {
                                 this.items[i].title = item.title;
+                                this.taskCategoryId = item.taskCategoryId;
                                 this.items[i].priority = item.priority;
                                 this.items[i].makeUpTo = new Date(item.makeUpTo);
                                 this.items[i].notes = item.notes;

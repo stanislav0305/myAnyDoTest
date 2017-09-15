@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace AnyDo.WebAPI.Models
 {
-    public class TaskCategoryEditApiModel
+    public class TaskCategoryWithTasksApiModel
     {
         public int Id { get; set; }
         public string Title { get; set; }
-        public bool IsMain { get; set; }
+        public IEnumerable<TaskApiModel> Tasks { get; set; }
     }
 }

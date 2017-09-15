@@ -29,6 +29,9 @@ namespace AnyDo.WebAPI.Models
 
             CreateMap<TaskCategory, TaskCategoryApiModel>();
 
+            CreateMap<TaskCategory, TaskCategoryWithTasksApiModel>()
+                .ForMember(dest => dest.Tasks, opts => opts.MapFrom(src => src.Task));
+
             CreateMap<TaskCategoryCreateApiModel, TaskCategory>()
                 .ForMember(dest => dest.Title, opts => opts.MapFrom(src => src.Title))
                 .ForMember(dest => dest.IsDefault, opts => opts.MapFrom(src => false))
@@ -41,6 +44,7 @@ namespace AnyDo.WebAPI.Models
             CreateMap<TaskCategoryEditApiModel, TaskCategory>()
                .ForMember(dest => dest.Title, opts => opts.MapFrom(src => src.Title))
                .ForMember(dest => dest.OrderNumber, opts => opts.Ignore())
+               .ForMember(dest => dest.IsMain, opts => opts.MapFrom(src => false))
                .ForMember(dest => dest.Modefied, opts => opts.MapFrom(src => DateTime.Now));
 
             CreateMap<TaskCategoryOrderedApiModel, TaskCategoryOrdered>();

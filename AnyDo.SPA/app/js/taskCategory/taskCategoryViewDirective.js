@@ -14,6 +14,24 @@
                             $scope.taskCategories.items = taskCategories;
                         });
                     },
+                    isNotMainOnly: function () {
+                        var filtredItems = this.items.filter(function (item) {
+                            return item.isMain === false;
+                        });
+
+                        return filtredItems;
+                    },
+                    getById: function (id) {
+                        var result = null;
+                        for (var i = 0; i < this.items.length; i++) {
+                            if (this.items[i].id === id) {
+                                result = this.items[i];
+                                break;
+                            }
+                        }
+
+                        return result;
+                    },
                     addItem: function (item) {
                         this.items.push(item);
                     },
@@ -37,6 +55,22 @@
                     mainItemDecTaskCout: function (item) {
                         for (var i = 0; i < this.items.length; i++) {
                             if (this.items[i].isMain) {
+                                this.items[i].taskCount--;
+                                break;
+                            }
+                        }
+                    },
+                    itemIncTaskCoutById: function (categoryId) {
+                        for (var i = 0; i < this.items.length; i++) {
+                            if (this.items[i].id === categoryId) {
+                                this.items[i].taskCount++;
+                                break;
+                            }
+                        }
+                    },
+                    itemDecTaskCoutById: function (categoryId) {
+                        for (var i = 0; i < this.items.length; i++) {
+                            if (this.items[i].id === categoryId) {
                                 this.items[i].taskCount--;
                                 break;
                             }

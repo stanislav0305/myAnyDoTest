@@ -5,6 +5,11 @@
         <div>
             <input type="text" name="title" required ng-model="taskForCreate.title">
             <div>
+                <span>Task category</span>
+                <select required ng-model="taskForCreate.taskCategoryId"
+                        ng-options="tc.id as tc.title for tc in taskCategories.isNotMainOnly()"></select>
+            </div>
+            <div>
                 <label>Priority</label>
                 <input type="checkbox" name="priority" ng-model="taskForCreate.priority">
             </div>

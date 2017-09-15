@@ -1,22 +1,28 @@
-﻿<div id="task-category-edit-modal" class="uk-modal">
+﻿<div id="task-category-edit-modal" class="uk-modal-container uk-modal">
     <div class="uk-modal-dialog">
         <a class="uk-modal-close uk-close"></a>
 
-        <div ng-show="showingManager.editTaskCategory.formVisible" >
-            <div class="uk-modal-header">
-                <h2>Edit Task Category</h2>
+        <div ng-show="showingManager.editTaskCategory.formVisible">
+
+            <div ng-show="!taskCategoryForEdit.isMain">
+                <div class="uk-modal-header">
+                    <h2>Edit Task Category</h2>
+                </div>
+                <div class="uk-overflow-container">
+
+                    <form ng-submit="editTaskCategory()">
+                        <input type="text" name="title" required ng-model="taskCategoryForEdit.title">
+                        <button type="submit" class="uk-button uk-button-primary" ngClick="Submit">Save</button>
+                    </form>
+
+                </div>
+            </div>
+            <div ng-show="taskCategoryForEdit.isMain">
+                <h2>{{taskCategoryForEdit.title}}</h2>
             </div>
 
-            <div class="uk-overflow-container">
+            <task-view><task-view>
 
-                <form ng-submit="editTaskCategory()">
-                    <input type="text" name="title" required ng-model="taskCategoryForEdit.title">
-                    <button type="submit" class="uk-button uk-button-primary" ngClick="Submit">Save</button>
-                </form>
-
-                <task-view><task-view>
-
-            </div>
         </div>
 
 

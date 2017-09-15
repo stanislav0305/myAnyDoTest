@@ -1,9 +1,4 @@
 ﻿
-<button type="submit" class="uk-button uk-button-primary"
-        ng-click="showingManager.showCreateTaskForm()">
-    + Add task
-</button>
-
 <div>
     <label>Search:</label>
     <input type="text" ng-model="search.title">
@@ -17,168 +12,250 @@
 <ul id="task-view-mode-tab-contents" class="uk-switcher uk-margin">
     <li>
         <h4>List view</h4>
-        <table>
-            <tr>
-                <td>Make up to (format: {{preferences.preference.dateFormat}})</td>
-                <td>Priority</td>
-                <td>Title</td>
-            </tr>
-            <tr ng-repeat="task in tasks.items
+
+        <div ng-show="!taskCategoryForEdit.isMain" class="uk-panel-box">
+            <button type="submit" class="uk-button uk-button-primary"
+                    ng-click="taskCreateClick()">
+                + Add task
+            </button>
+            <table>
+                <tr>
+                    <td>Make up to (format: {{preferences.preference.dateFormat}})</td>
+                    <td>Priority</td>
+                    <td>Title</td>
+                </tr>
+                <tr ng-repeat="task in tasks.items
                 | filter: {'title' : search.title}">
-                <td>{{task.makeUpTo | dateToPrefString:preferences.preference.dateFormat }}</td>
-                <td>{{task.priority}}</td>
-                <td>{{task.title}}</td>
-                <td>
-                    <button type="button" class="uk-button uk-button-primary"
-                            ng-click="taskEditClick(task)">
-                        Edit
+                    <td>{{task.makeUpTo | dateToPrefString:preferences.preference.dateFormat }}</td>
+                    <td>{{task.priority}}</td>
+                    <td>{{task.title}}</td>
+                    <td>
+                        <button type="button" class="uk-button uk-button-primary"
+                                ng-click="taskEditClick(task)">
+                            Edit
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div ng-show="taskCategoryForEdit.isMain" class="uk-panel-box">
+            <div class="uk-grid uk-grid-small">
+
+                <div class="uk-width-large-1-4 uk-width-medium-1-3 uk-panel-box" ng-repeat="category in  tasks.items|groupByCategory:taskCategories">
+                    <h5 class="text-primary-color uk-text-uppercase uk-text-bold">{{category.title}}</h5>
+                    <button type="submit" class="uk-button uk-button-primary"
+                            ng-click="taskCreateByCategoryIdClick(category.id)">
+                        + Add task
                     </button>
-                </td>
-            </tr>
-        </table>
+                    <table>
+                        <tr>
+                            <td>Make up to (format: {{preferences.preference.dateFormat}})</td>
+                            <td>Priority</td>
+                            <td>Title</td>
+                        </tr>
+
+                        <tr ng-repeat="task in tasks.items
+                        | filter: {'taskCategoryId': category.id}
+                        | filter: {'title' : search.title} ">
+                            <td>{{task.makeUpTo | dateToPrefString:preferences.preference.dateFormat }}</td>
+                            <td>{{task.priority}}</td>
+                            <td>{{task.title}}</td>
+                            <td>
+                                <button type="button" class="uk-button uk-button-primary"
+                                        ng-click="taskEditClick(task)">
+                                    Edit
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
     </li>
-    <li>
+    <li class="class=" uk-panel-box"">
         <h4>Time view</h4>
 
-        <h5>Today</h5>
-        <table>
-            <tr>
-                <td>Make up to (format: {{preferences.preference.dateFormat}})</td>
-                <td>Priority</td>
-                <td>Title</td>
-                <td></td>
-            </tr>
-            <tr ng-repeat="task in tasks.items
+        <div class="uk-grid uk-grid-small">
+            <div class="uk-width-large-1-4 uk-width-medium-1-3 uk-panel-box">
+                <h5>Today</h5>
+                <button type="submit" class="uk-button uk-button-primary"
+                        ng-click="taskCreateClick()">
+                    + Add task
+                </button>
+                <table>
+                    <tr>
+                        <td>Make up to (format: {{preferences.preference.dateFormat}})</td>
+                        <td>Priority</td>
+                        <td>Title</td>
+                        <td></td>
+                    </tr>
+                    <tr ng-repeat="task in tasks.items
                 | isToday
                 | filter: {'title' : search.title}
                 | orderBy:'-makeUpTo'">
-                <td>{{task.makeUpTo | dateToPrefString:preferences.preference.dateFormat }}</td>
-                <td>{{task.priority}}</td>
-                <td>{{task.title}}</td>
-                <td>
-                    <button type="button" class="uk-button uk-button-primary"
-                            ng-click="taskEditClick(task)">
-                        Edit
-                    </button>
-                </td>
-            </tr>
-        </table>
+                        <td>{{task.makeUpTo | dateToPrefString:preferences.preference.dateFormat }}</td>
+                        <td>{{task.priority}}</td>
+                        <td>{{task.title}}</td>
+                        <td>
+                            <button type="button" class="uk-button uk-button-primary"
+                                    ng-click="taskEditClick(task)">
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
-        <h5>Tomorrow</h5>
-        <table>
-            <tr>
-                <td>Make up to (format: {{preferences.preference.dateFormat}})</td>
-                <td>Priority</td>
-                <td>Title</td>
-            </tr>
-            <tr ng-repeat="task in tasks.items
+            <div class="uk-width-large-1-4 uk-width-medium-1-3 uk-panel-box">
+                <h5>Tomorrow</h5>
+                <button type="submit" class="uk-button uk-button-primary"
+                        ng-click="taskCreateMomorrowClick()">
+                    + Add task
+                </button>
+                <table>
+                    <tr>
+                        <td>Make up to (format: {{preferences.preference.dateFormat}})</td>
+                        <td>Priority</td>
+                        <td>Title</td>
+                    </tr>
+                    <tr ng-repeat="task in tasks.items
                 | isTomorrow
                 | filter: {'title' : search.title}
                 | orderBy:'-makeUpTo'">
-                <td>{{task.makeUpTo | dateToPrefString:preferences.preference.dateFormat }}</td>
-                <td>{{task.priority}}</td>
-                <td>{{task.title}}</td>
-                <td>
-                    <button type="button" class="uk-button uk-button-primary"
-                            ng-click="taskEditClick(task)">
-                        Edit
-                    </button>
-                </td>
-            </tr>
-        </table>
+                        <td>{{task.makeUpTo | dateToPrefString:preferences.preference.dateFormat }}</td>
+                        <td>{{task.priority}}</td>
+                        <td>{{task.title}}</td>
+                        <td>
+                            <button type="button" class="uk-button uk-button-primary"
+                                    ng-click="taskEditClick(task)">
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
-        <h5>Upcomming</h5>
-        <table>
-            <tr>
-                <td>Make up to (format: {{preferences.preference.dateFormat}})</td>
-                <td>Priority</td>
-                <td>Title</td>
-            </tr>
-            <tr ng-repeat="task in tasks.items
+            <div class="uk-width-large-1-4 uk-width-medium-1-3 uk-panel-box">
+                <h5>Upcomming</h5>
+                <button type="submit" class="uk-button uk-button-primary"
+                        ng-click="taskCreateUpcommingClick()">
+                    + Add task
+                </button>
+                <table>
+                    <tr>
+                        <td>Make up to (format: {{preferences.preference.dateFormat}})</td>
+                        <td>Priority</td>
+                        <td>Title</td>
+                    </tr>
+                    <tr ng-repeat="task in tasks.items
                 | isUpcomming
                 | filter: {'title' : search.title}
                 | orderBy:'-makeUpTo'">
-                <td>{{task.makeUpTo | dateToPrefString:preferences.preference.dateFormat }}</td>
-                <td>{{task.priority}}</td>
-                <td>{{task.title}}</td>
-                <td>
-                    <button type="button" class="uk-button uk-button-primary"
-                            ng-click="taskEditClick(task)">
-                        Edit
-                    </button>
-                </td>
-            </tr>
-        </table>
+                        <td>{{task.makeUpTo | dateToPrefString:preferences.preference.dateFormat }}</td>
+                        <td>{{task.priority}}</td>
+                        <td>{{task.title}}</td>
+                        <td>
+                            <button type="button" class="uk-button uk-button-primary"
+                                    ng-click="taskEditClick(task)">
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
-        <h5>Someday</h5>
-        <table>
-            <tr>
-                <td>Make up to (format: {{preferences.preference.dateFormat}})</td>
-                <td>Priority</td>
-                <td>Title</td>
-            </tr>
-            <tr ng-repeat="task in tasks.items
+            <div class="uk-width-large-1-4 uk-width-medium-1-3 uk-panel-box">
+                <h5>Someday</h5>
+                <button type="submit" class="uk-button uk-button-primary"
+                        ng-click="taskCreateSomedayClick()">
+                    + Add task
+                </button>
+                <table>
+                    <tr>
+                        <td>Make up to (format: {{preferences.preference.dateFormat}})</td>
+                        <td>Priority</td>
+                        <td>Title</td>
+                    </tr>
+                    <tr ng-repeat="task in tasks.items
                 | isSomeday
                 | filter: {'title' : search.title}
                 | orderBy:'-makeUpTo'">
-                <td>{{task.makeUpTo | dateToPrefString:preferences.preference.dateFormat }}</td>
-                <td>{{task.priority}}</td>
-                <td>{{task.title}}</td>
-                <td>
-                    <button type="button" class="uk-button uk-button-primary"
-                            ng-click="taskEditClick(task)">
-                        Edit
-                    </button>
-                </td>
-            </tr>
-        </table>
+                        <td>{{task.makeUpTo | dateToPrefString:preferences.preference.dateFormat }}</td>
+                        <td>{{task.priority}}</td>
+                        <td>{{task.title}}</td>
+                        <td>
+                            <button type="button" class="uk-button uk-button-primary"
+                                    ng-click="taskEditClick(task)">
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
+        </div>
     </li>
     <li>
         <h4>Priority view</h4>
 
-        <h5>High</h5>
-        <table>
-            <tr>
-                <td>Make up to (format: {{preferences.preference.dateFormat}})</td>
-                <td>Priority</td>
-                <td>Title</td>
-            </tr>
-            <tr ng-repeat="task in tasks.items
+        <div class="uk-grid uk-grid-small">
+            <div class="uk-width-large-1-2 uk-width-medium-1-2 uk-panel-box">
+                <h5>High</h5>
+                <button type="submit" class="uk-button uk-button-primary"
+                        ng-click="taskCreateHighPriorityClick()">
+                    + Add task
+                </button>
+                <table>
+                    <tr>
+                        <td>Make up to (format: {{preferences.preference.dateFormat}})</td>
+                        <td>Priority</td>
+                        <td>Title</td>
+                    </tr>
+                    <tr ng-repeat="task in tasks.items
                 | filter: {'priority':true}
                 | filter: {'title' : search.title}">
-                <td>{{task.makeUpTo | dateToPrefString:preferences.preference.dateFormat }}</td>
-                <td>{{task.priority}}</td>
-                <td>{{task.title}}</td>
-                <td>
-                    <button type="button" class="uk-button uk-button-primary"
-                            ng-click="taskEditClick(task)">
-                        Edit
-                    </button>
-                </td>
-            </tr>
-        </table>
+                        <td>{{task.makeUpTo | dateToPrefString:preferences.preference.dateFormat }}</td>
+                        <td>{{task.priority}}</td>
+                        <td>{{task.title}}</td>
+                        <td>
+                            <button type="button" class="uk-button uk-button-primary"
+                                    ng-click="taskEditClick(task)">
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
 
-        <h5>Normal</h5>
-        <table>
-            <tr>
-                <td>Make up to (format: {{preferences.preference.dateFormat}})</td>
-                <td>Priority</td>
-                <td>Title</td>
-            </tr>
-            <tr ng-repeat="task in tasks.items
+            <div class="uk-width-large-1-2 uk-width-medium-1-2 uk-panel-box">
+                <h5>Normal</h5>
+                <button type="submit" class="uk-button uk-button-primary"
+                        ng-click="taskCreateClick()">
+                    + Add task
+                </button>
+                <table>
+                    <tr>
+                        <td>Make up to (format: {{preferences.preference.dateFormat}})</td>
+                        <td>Priority</td>
+                        <td>Title</td>
+                    </tr>
+                    <tr ng-repeat="task in tasks.items
                 | filter: {'priority':false}
                 | filter: {'title' : search.title}">
-                <td>{{task.makeUpTo | dateToPrefString:preferences.preference.dateFormat }}</td>
-                <td>{{task.priority}}</td>
-                <td>{{task.title}}</td>
-                <td>
-                    <button type="button" class="uk-button uk-button-primary"
-                            ng-click="taskEditClick(task)">
-                        Edit
-                    </button>
-                </td>
-            </tr>
-        </table>
+                        <td>{{task.makeUpTo | dateToPrefString:preferences.preference.dateFormat }}</td>
+                        <td>{{task.priority}}</td>
+                        <td>{{task.title}}</td>
+                        <td>
+                            <button type="button" class="uk-button uk-button-primary"
+                                    ng-click="taskEditClick(task)">
+                                Edit
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </li>
 </ul>

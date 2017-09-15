@@ -8,15 +8,18 @@
                 $scope.taskCategoryForEdit = {
                     id: 0,
                     title: '',
+                    isMain: false,
                     taskCount: 0,
                     init: function (taskCategory) {
                         this.id = taskCategory.id * 1;
                         this.title = taskCategory.title;
+                        this.isMain = taskCategory.isMain;
                         this.taskCount = taskCategory.taskCount;
                     },
                     clear: function () {
                         this.id = 0;
                         this.title = '';
+                        this.isMain = false;
                         this.taskCount = 0;
                     }
                 };

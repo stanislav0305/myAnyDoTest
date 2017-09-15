@@ -149,7 +149,8 @@
     <Content Include="app\js\taskCategory\taskCategoryEditDirective.js" />
     <Content Include="app\js\taskCategory\taskCategoryModule.js" />
     <Content Include="app\js\taskCategory\taskCategoryViewDirective.js" />
-    <Content Include="app\js\task\DateToPrefStringFilter.js" />
+    <Content Include="app\js\task\dateToPrefStringFilter.js" />
+    <Content Include="app\js\task\groupByCategoryFilter.js" />
     <Content Include="app\js\task\isSomeDayFilter.js" />
     <Content Include="app\js\task\isTodayFilter.js" />
     <Content Include="app\js\task\isTomorrowFilter.js" />
@@ -306,7 +307,6 @@
     <Content Include="Content\components\upload.gradient.min.css" />
     <Content Include="Content\components\upload.min.css" />
     <Content Include="Content\img\default_profile_icon.svg" />
-    <Content Include="Content\theme1.css" />
     <Content Include="Content\uikit.almost-flat.css" />
     <Content Include="Content\uikit.almost-flat.min.css" />
     <Content Include="Content\uikit.css" />

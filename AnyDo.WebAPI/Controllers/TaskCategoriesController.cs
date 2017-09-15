@@ -31,7 +31,7 @@ namespace AnyDo.WebAPI.Controllers
             var apiTaskCategories = Mapper.Map<IList<TaskCategory>, IList<TaskCategoryApiModel>>(dbTaskCategories);
             return apiTaskCategories;
         }
-       
+
         [HttpGet("{id}")]
         public TaskCategoryApiModel Get(int id)
         {

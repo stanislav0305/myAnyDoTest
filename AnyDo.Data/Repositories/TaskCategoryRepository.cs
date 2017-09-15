@@ -38,6 +38,11 @@ namespace AnyDo.Data.Repositories
             return this.GetAll().OrderBy(tc => tc.OrderNumber).AsEnumerable();
         }
 
+        public IEnumerable<TaskCategory> GetAllWitoutMain()
+        {
+            return this.GetAll().Where(tc => !tc.IsMain);
+        }
+
         public void UpdateTaskOrders(TaskCategoryOrdered[] dbTaskCategoriesOrdered)
         {
             var ids = dbTaskCategoriesOrdered.Select(tc => tc.Id).ToList();
@@ -94,6 +99,7 @@ namespace AnyDo.Data.Repositories
     public interface ITaskCategoryRepository : IRepository<TaskCategory>
     {
         IEnumerable<TaskCategory> GetAllOrdered();
+        IEnumerable<TaskCategory> GetAllWitoutMain();
         void UpdateTaskOrders(TaskCategoryOrdered[] dbTaskCategoriesOrdered);
 
         void IncrimentTaskCountCategoryById(int categoryId);

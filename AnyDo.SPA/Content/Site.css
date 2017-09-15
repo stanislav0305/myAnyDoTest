@@ -133,3 +133,7 @@ textarea {
     -o-background-size: cover;
     background-size: cover;
 }
+
+.uk-modal-container .uk-modal-dialog {
+    width: 1200px;
+}

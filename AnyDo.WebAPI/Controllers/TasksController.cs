@@ -24,8 +24,7 @@ namespace AnyDo.WebAPI.Controllers
             this.taskCategoryRepository = taskCategoryRepository;
             this.taskRepository = taskRepository;
         }
-
-
+     
         [HttpGet]
         public IEnumerable<TaskApiModel> Get([FromQuery, Required]TaskFilterOptions filter)
         {
@@ -38,6 +37,7 @@ namespace AnyDo.WebAPI.Controllers
             var apiTasks = Mapper.Map<List<Task>, List<TaskApiModel>>(dbTasks);
             return apiTasks;
         }
+        
 
         [HttpGet("{id}")]
         public TaskApiModel Get(int id)
@@ -72,10 +72,18 @@ namespace AnyDo.WebAPI.Controllers
             if (ModelState.IsValid)
             {
                 var dbModel = taskRepository.GetById(id);
+                int oldCategoryId = dbModel.TaskCategoryId;
+
                 dbModel = Mapper.Map<TaskEditApiModel, Task>(model, dbModel);
                 taskRepository.Update(dbModel);
 
                 resultModel = Mapper.Map<Task, TaskApiModel>(dbModel);
+
+                if (dbModel.TaskCategoryId != oldCategoryId)
+                {
+                    taskCategoryRepository.DecrimentTaskCountCategoryById(oldCategoryId);
+                    taskCategoryRepository.IncrimentTaskCountCategoryById(dbModel.TaskCategoryId);
+                }
             }
 
             return resultModel;

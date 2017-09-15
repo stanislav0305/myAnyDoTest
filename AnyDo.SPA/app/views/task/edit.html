@@ -5,9 +5,14 @@
         <div>
             <input type="text" name="title" required ng-model="taskForEdit.title">
             <div>
+                <span>Task category</span>
+                <select required ng-model="taskForEdit.taskCategoryId"
+                        ng-options="tc.id as tc.title for tc in taskCategories.isNotMainOnly()"></select>
+            </div>
+            <div>
                 <label>Priority</label>
                 <input type="checkbox" name="priority" ng-model="taskForEdit.priority">
-            </div>
+            </div>            
             <div>
                 <label>Make up to (format: {{preferences.preference.dateFormat}})</label>
                 <input type="date" required name="make-up-to" ng-model="taskForEdit.makeUpTo">
